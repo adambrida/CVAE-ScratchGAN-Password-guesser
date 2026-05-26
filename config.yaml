@@ -1,0 +1,51 @@
+# Device
+DEVICE: "cuda"                  # "cuda" or "cpu"
+
+# Password constraints
+MIN_PASS_LEN: 4                 # Minimum password length
+MAX_PASS_LEN: 15                # Maximum password length
+
+# Training hyperparameters
+GEN_LR: 0.0001                  # Learning rate for the CVAE
+DIS_LR: 0.001                   # Learning rate for the discriminator
+LOG_EVERY_BATCHES: 100          # Log metrics every N batches
+# KL annealing
+KL_RAMPUP_EPOCHS: 15            # Epochs over which KL weight linearly ramps up
+KL_LOSS_WEIGHT: 0.1             # Maximum weight for the KL divergence
+# Adversarial training
+DIS_START_EPOCH: 10             # Epoch at which discriminator starts training
+ADV_START_EPOCH: 15             # Epoch at which REINFORCE adversarial loss activates
+ADV_RAMPUP_EPOCHS: 5            # Epochs over which adversarial weight linearly ramps up
+ADV_LOSS_WEIGHT: 0.25           # Maximum weight for adversarial loss
+# REINFORCE
+REINFORCE_GAMMA: 0.23           # Discount factor for cumulative reward
+REINFORCE_LAMBDA: 0.95          # Smoothing factor for the REINFORCE baseline
+
+# Architecture: BiGRU encoder
+BIGRU_EMB_DIM: 32               # Embedding dimension
+BIGRU_HIDDEN_DIM: 256           # Hidden size
+BIGRU_LAYERS: 2                 # Number of BiGRU layers
+BIGRU_DROPOUT: 0.1              # Dropout between BiGRU layers
+
+# Architecture: Transformer encoder
+TRANSFORMER_EMB_DIM: 256        # Embedding dimension
+TRANSFORMER_FF_DIM: 512         # Feed-forward hidden dimension
+TRANSFORMER_HEADS: 8            # Number of self-attention heads
+TRANSFORMER_LAYERS: 3           # Number of Transformer layers
+TRANSFORMER_DROPOUT: 0.1        # Dropout between Transformer layers
+
+# Architecture: Latent space
+LATENT_DIM: 128                 # Dimension of the latent space
+
+# Architecture: GRU decoder
+DECODER_EMB_DIM: 256            # Embedding dimension
+DECODER_HIDDEN_DIM: 512         # Hidden size
+DECODER_LAYERS: 2               # Number of GRU layers
+DECODER_DROPOUT: 0.2            # Dropout between GRU layers
+WORD_DROPOUT_RATE: 0.2          # Probability of replacing an input token with <UNK> during training
+
+# Architecture: Discriminator
+DISCRIMINATOR_EMB_DIM: 256      # Embedding dimension
+DISCRIMINATOR_HIDDEN_DIM: 512   # Hidden size
+DISCRIMINATOR_LAYERS: 1         # Number of GRU layers
+DISCRIMINATOR_DROPOUT: 0.2      # Embedding dropout
